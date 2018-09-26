@@ -1,27 +1,28 @@
-import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools'
+import { makeExecutableSchema } from 'graphql-tools'
+import resolvers from './resolver'
 const typeDefs = `
-type Person{
-    name:String,
-    age:Int,
-    gender:String
 
-}
 type Books{
+    id:String
     author:String,
     country:String,
     imageLink:String,
     language:String,
     link:String,
     pages:Int,
-    titile;String,
+    titile:String,
     year:Int
 }
 type Query {
-    person:[Person],
-    book:[Books]
+    
+    book:[Books],
+    bookSearched(year:Int):Books
+}
+type Mutation {
+    addBooksToData(author:String,country:String,imageLink:String,language:String,link:String,pages:Int,title:String,year:Int):Books
 }
 `
-const schema = makeExecutableSchema({ typeDefs });
-addMockFunctionsToSchema({ schema });
+const schema = makeExecutableSchema({ typeDefs,resolvers });
+
 export default schema;
 
