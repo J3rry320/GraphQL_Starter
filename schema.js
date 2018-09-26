@@ -19,10 +19,13 @@ type Query {
     bookSearched(year:Int):Books
 }
 type Mutation {
-    addBooksToData(author:String,country:String,imageLink:String,language:String,link:String,pages:Int,title:String,year:Int):Books
+    addBooksToData(author:String,country:String,imageLink:String,language:String,link:String,pages:Int,title:String,year:Int):Books,
+    deleteBooksFromDataBase(id:String):Books,
+    updateBookDataInDataBase(id:string,name:string):Books
 }
 `
-const schema = makeExecutableSchema({ typeDefs,resolvers });
+const schema = makeExecutableSchema({ typeDefs, resolvers });
 
 export default schema;
+
 

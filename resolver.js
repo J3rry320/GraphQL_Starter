@@ -16,15 +16,22 @@ const Resolvers = {
             const Book = new BookModel({
                 author: author,
                 country: country,
-                 imageLink: imageLink, 
-                language: language, 
+                imageLink: imageLink,
+                language: language,
                 link: link,
-                 pages: pages,
-                 titile:title,
-                 year:year
+                pages: pages,
+                titile: title,
+                year: year
             })
             return Book.save();
 
+
+        },
+        deleteBooksFromDataBase: (root, { id }) => {
+            return BookModel.findOneAndRemove({ id: id })
+        },
+        updateBookDataInDataBase: (root, { id, name }) => {
+            return BookModel.findOneAndUpdate({ id: id }, { name: name })
         }
     }
 }

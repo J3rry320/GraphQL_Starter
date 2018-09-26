@@ -9,7 +9,9 @@ const server = express();
 server.use('/graphiql', graphiqlExpress({
     endpointURL: "/graphql"
 }));
-Mongoose.connect("mongodb://localhost/graphQlTutorial");
+Mongoose.connect("mongodb://localhost/graphQlTutorial",{
+    useMongoClient:true
+});
 const connection=Mongoose.connection;
 connection.once('open',()=>{
     console.log("Connection to the data base was successfull");
